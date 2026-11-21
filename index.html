@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRF OTT</title><style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#080808;
+    color:white;
+    font-family:Arial,sans-serif;
+    padding-bottom:75px;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px;
+    background:#101010;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+    color:#ffc107;
+}
+
+.logo span{
+    color:#e50914;
+}
+
+.profile{
+    background:#e50914;
+    padding:10px 13px;
+    border-radius:50%;
+}
+
+.search{
+    padding:15px;
+}
+
+.search input{
+    width:100%;
+    padding:13px;
+    border-radius:8px;
+    border:1px solid #ffc107;
+    background:#191919;
+    color:white;
+    font-size:15px;
+}
+
+.hero{
+    margin:10px;
+    height:220px;
+    border-radius:12px;
+    background:linear-gradient(0deg,#000,transparent),
+    linear-gradient(135deg,#7b0000,#160000,#000);
+    display:flex;
+    flex-direction:column;
+    justify-content:end;
+    padding:20px;
+}
+
+.hero h1{
+    color:#ffc107;
+    font-size:27px;
+}
+
+.hero p{
+    margin:8px 0;
+    color:#ddd;
+}
+
+button{
+    background:#e50914;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.section{
+    padding:15px;
+}
+
+.section h2{
+    font-size:19px;
+    margin-bottom:15px;
+    border-left:4px solid #ffc107;
+    padding-left:10px;
+}
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.category{
+    background:#222;
+    border:1px solid #e50914;
+    padding:10px 17px;
+    border-radius:20px;
+    white-space:nowrap;
+}
+
+.movies{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.movie{
+    background:#151515;
+    border-radius:9px;
+    overflow:hidden;
+}
+
+.poster{
+    height:190px;
+    background:linear-gradient(145deg,#5c0000,#111,#000);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#ffc107;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.movie h3{
+    padding:10px;
+    font-size:15px;
+}
+
+.movie p{
+    padding:0 10px 12px;
+    color:#aaa;
+    font-size:12px;
+}
+
+nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#111;
+    display:flex;
+    justify-content:space-around;
+    padding:15px 5px;
+    border-top:1px solid #333;
+}
+
+nav a{
+    color:#ffc107;
+    text-decoration:none;
+    font-size:12px;
+}
+
+nav a:hover{
+    color:#e50914;
+}
+  /* KRF OTT LOGIN DESIGN */
+#authPage {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 25px;
+  text-align: center;
+  background: #181818;
+  border-radius: 12px;
+  color: white;
+}
+
+#authPage h2 {
+  color: #e50914;
+  margin-bottom: 20px;
+}
+
+#authPage input {
+  width: 100%;
+  padding: 13px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background: #292929;
+  color: white;
+}
+
+#authPage button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #e50914;
+  color: white;
+  font-size: 16px;
+}
+
+#authPage p {
+  margin-top: 15px;
+  }
+</style>
+</head>
+  <body>
+    <div id="authPage">
+  <h2>KRF OTT</h2>
+  <h3>Login / Signup</h3>
+<input type="text" id="name" placeholder="Enter Your Name">
+  <input type="email" id="email" placeholder="Enter Email">
+
+  <input type="password" id="password" placeholder="Enter Password">
+
+  <button onclick="signup()">Create Account</button>
+
+  <button onclick="login()">Login</button>
+
+  <p id="authMessage"></p>
+    </div>
+    <div id="profilePage" style="display:none; padding:25px; color:white; text-align:center;">
+
+  <h2>KRF OTT PROFILE</h2>
+<h3 id="userName">KRF OTT User</h3>
+  <p id="userEmail" style="margin:20px;"></p>
+
+  <button onclick="logout()">LOGOUT</button>
+
+  <br><br>
+
+  <button onclick="closeProfile()">BACK TO HOME</button>
+
+    </div>
+    <div id="homePage" style="display:none;">
+    <header>
+    <div class="logo"><span>KRF</span> OTT</div>
+    <div class="profile" onclick="openProfile()">👤</div>
+</header><div class="search">
+    <input type="text" id="search"
+    placeholder="Search Movies..."
+    oninput="searchMovies()">
+</div><div class="hero">
+    <h1>KRF ORIGINALS</h1>
+    <p>Experience Movies Like Never Before</p>
+    <button onclick="alert('Coming Soon!')">▶ WATCH NOW</button>
+</div><div class="section">
+    <h2>Categories</h2>
+    <div class="categories">
+        <div class="category">Action</div>
+        <div class="category">Drama</div>
+        <div class="category">Thriller</div>
+        <div class="category">Comedy</div>
+        <div class="category">Adventure</div>
+    </div>
+</div><div class="section">
+    <h2>Latest Movies</h2><div class="movies" id="movies">
+
+    <div class="movie">
+        <div class="poster">KRF</div>
+        <h3>BHEEL PRADESH</h3>
+        <p>Original Movie | 2026</p>
+    </div>
+
+    <div class="movie">
+        <div class="poster">KRF</div>
+        <h3>KRF ORIGINAL</h3>
+        <p>Coming Soon</p>
+    </div>
+
+    <div class="movie">
+        <div class="poster">KRF</div>
+        <h3>NEW MOVIE</h3>
+        <p>Coming Soon</p>
+    </div>
+
+    <div class="movie">
+        <div class="poster">KRF</div>
+        <h3>WEB SERIES</h3>
+        <p>Coming Soon</p>
+    </div>
+
+</div>
+
+</div><nav>
+    <a href="#">🏠<br>Home</a>
+    <a href="#movies">🎬<br>Movies</a>
+    <a href="#">⭐<br>Premium</a>
+    <a href="#">👤<br>Profile</a>
+</nav> 
+</div> 
+<script>
+function searchMovies(){
+    let input=document.getElementById("search").value.toLowerCase();
+    let movies=document.querySelectorAll(".movie");
+
+    movies.forEach(movie=>{
+        let name=movie.innerText.toLowerCase();
+        movie.style.display=name.includes(input)?"block":"none";
+    });
+}
+</script> <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+
+  import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+    updateProfile,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBl1Xcag8OkeAjPr6EfW6M08JBTYWUVAUc",
+    authDomain: "krf-ott.firebaseapp.com",
+    projectId: "krf-ott",
+    storageBucket: "krf-ott.firebasestorage.app",
+    messagingSenderId: "1026471816936",
+    appId: "1:102647181635ae8e470209e35d",
+    measurementId: "G-VB55EJXR9Y"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  onAuthStateChanged(auth, (user) => {
+  const authPage = document.getElementById("authPage");
+  const homePage = document.getElementById("homePage");
+  const profilePage = document.getElementById("profilePage");
+
+  profilePage.style.display = "none";
+
+  if (user) {
+    authPage.style.display = "none";
+    homePage.style.display = "block";
+  } else {
+    authPage.style.display = "block";
+    homePage.style.display = "none";
+  }
+});
+  window.signup = async function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const message = document.getElementById("authMessage");
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(auth.currentUser, {
+  displayName: document.getElementById("name").value
+});
+    message.innerText = "Account successfully created!";
+  } catch (error) {
+    message.innerText = error.message;
+  }
+};
+
+window.login = async function () {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const message = document.getElementById("authMessage");
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    message.innerText = "Login successful!";
+  } catch (error) {
+    message.innerText = error.message;
+  }
+};
+  window.openProfile = function () {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("profilePage").style.display = "block";
+document.getElementById("userName").innerText =
+  auth.currentUser.displayName || "KRF OTT User";
+  document.getElementById("userEmail").innerText =
+    auth.currentUser.email;
+};
+
+window.closeProfile = function () {
+  document.getElementById("profilePage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+};
+
+window.logout = async function () {
+  await signOut(auth);
+};
+  </script>
+  </body>
+</html>
