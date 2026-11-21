@@ -220,7 +220,7 @@ nav a:hover{
   <button onclick="signup()">Create Account</button>
 
   <button onclick="login()">Login</button>
-
+<button onclick="googleLogin()">Continue with Google</button>
   <p id="authMessage"></p>
     </div>
     <div id="profilePage" style="display:none; padding:25px; color:white; text-align:center;">
@@ -311,8 +311,10 @@ function searchMovies(){
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
     updateProfile,
-  signOut,
-  onAuthStateChanged
+    signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
   const firebaseConfig = {
@@ -367,6 +369,17 @@ window.login = async function () {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     message.innerText = "Login successful!";
+  } catch (error) {
+    message.innerText = error.message;
+  }
+};
+  window.googleLogin = async function () {
+  const provider = new GoogleAuthProvider();
+  const message = document.getElementById("authMessage");
+
+  try {
+    await signInWithPopup(auth, provider);
+    message.innerText = "Google Login successful!";
   } catch (error) {
     message.innerText = error.message;
   }
