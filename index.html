@@ -393,13 +393,16 @@ window.verifyOTP = async function () {
 
   profilePage.style.display = "none";
 
-  if (user) {
-    authPage.style.display = "none";
-    homePage.style.display = "block";
-  } else {
-    authPage.style.display = "block";
-    homePage.style.display = "none";
-  }
+ if (user) {
+  authPage.style.display = "none";
+  profilePage.style.display = "none";
+  homePage.style.display = "block";
+  homePage.style.visibility = "visible";
+} else {
+  authPage.style.display = "block";
+  homePage.style.display = "none";
+  profilePage.style.display = "none";
+    } 
 });
   window.signup = async function () {
   const email = document.getElementById("email").value;
